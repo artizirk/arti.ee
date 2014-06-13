@@ -1,12 +1,10 @@
-{% set title = "tere" %}
+{% set title = post.title %}
 {% set tab = {"blog":"active"} %}
 {% extends "layout.html" %}
 {% block body %}
-{% for post in posts %}
 <div class="page-header">
   <h2><a href="{{ url_for('show_post', slug=post.slug) }}">{{ post.title }}</a></h2>
 </div>
-<p>{{ post.body|truncate(100) }}</p>
+<p>{{ post.body }}</p>
 {#<p>{{ post.created_at.strftime('%H:%M %Y-%m-%d') }}</p>#}
-{% endfor %}
 {% endblock %}

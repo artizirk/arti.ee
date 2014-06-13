@@ -1,6 +1,12 @@
 import os
-from . import app
+from .app import app, login_manager
+from .models import Post, User
 from flask import render_template, send_from_directory
+
+
+@login_manager.user_loader
+def load_user(email):
+    return User.objects.first(email)
 
 
 @app.route('/favicon.ico')
@@ -12,7 +18,14 @@ def favicon():
 
 @app.route("/")
 def blog():
-    return render_template("blog.html")
+    posts = Post.objects.all()
+    return render_template("blog.html", posts=posts)
+
+
+@app.route("/post/<slug>")
+def show_post(slug):
+    post = Post.objects.get_or_404(slug=slug)
+    return render_template("show_post.html", post=post)
 
 
 @app.route("/login")

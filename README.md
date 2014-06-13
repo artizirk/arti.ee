@@ -7,7 +7,7 @@ How to run this?
 ```
 git clone https://github.com/arti95/arti.ee.git
 python3 -m venv venv  # Python 3.3+ comes with built in virtualenv :D
-source venv/bin/activate.sh
+source venv/bin/activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
