@@ -1,10 +1,10 @@
 from flask import Flask
 from flask.ext.login import LoginManager
-from flask.ext.mongoengine import MongoEngine, MongoEngineSessionInterface
+from flask.ext.mongoengine import MongoEngine
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('config.py', silent=True)
 db = MongoEngine(app)
 
 login_manager = LoginManager()

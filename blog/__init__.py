@@ -1,2 +1,2 @@
-from .app import app, db, login_manager
+from .app import app, db
 from .views import *
