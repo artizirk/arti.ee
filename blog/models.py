@@ -21,9 +21,12 @@ class Post(db.Document):
         'ordering': ['-created_at']
     }
 
+
 class User(db.Document):
     password = db.StringField(max_length=255, required=True)
-    email = db.StringField(max_length=255, required=True)
+    username = db.StringField(max_length=255, required=True)
+    email = db.EmailField(max_length=255, required=True)
+    salt = db.StringField(required=True)
     registered_on = db.DateTimeField(default=datetime.datetime.now, required=True)
 
     def is_authenticated(self):
@@ -39,10 +42,10 @@ class User(db.Document):
         return unicode(self.email)
 
     def __repr__(self):
-        return '<User {}>'.format(self.email)
+        return '<User {}>'.format(self.username)
 
     meta = {
         'allow_inheritance': True,
-        'indexes': ['-registered_on', 'email'],
+        'indexes': ['-registered_on', 'email', 'username'],
         'ordering': ['-registered_on']
     }

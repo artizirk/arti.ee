@@ -2,10 +2,13 @@
 {% set tab = {"login":"active"} %}
 {% extends "layout.html" %}
 {% block body %}
-<form class="form-signin" role="form">
+<form class="form-signin" role="form" method="POST" action="{{ url_for('login')}}">
     <h2 class="form-signin-heading">Please sign in</h2>
-    <input type="email" class="form-control" placeholder="Email address" required autofocus>
-    <input type="password" class="form-control" placeholder="Password" required>
+    {{ form.hidden_tag() }}
+    {{ form.username(class="form-control", placeholder="Username", required=True, autofocus=True) }}
+    {{ form.password(class="form-control", placeholder="Password", required=Truei, type="password") }}
+    <!--<input type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" required>-->
     <label class="checkbox">
         <input type="checkbox" value="remember-me"> Remember me
     </label>
